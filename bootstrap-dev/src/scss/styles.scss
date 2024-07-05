@@ -1,0 +1,268 @@
+// Override Bootstrap's Sass default variables
+//
+// Nearly all variables in Bootstrap are written with the `!default` flag.
+// This allows you to override the default values of those variables before
+// you import Bootstrap's source Sass files.
+//
+// Overriding the default variable values is the best way to customize your
+// CSS without writing _new_ styles. For example, you can either change
+// `$body-color` or write more CSS that override's Bootstrap's CSS like so:
+// `body { color: red; }`.
+
+
+//
+// Bring in Bootstrap
+//
+
+// Option 1
+//
+// Import all of Bootstrap's CSS
+
+// @import "bootstrap/scss/bootstrap";
+
+// Option 2
+//
+// Place variable overrides first, then import just the styles you need. Note that some stylesheets are required no matter what.
+
+// Toggle global options
+$enable-gradients: false;
+$enable-shadows: false;
+
+$offcanvas-box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+
+// Include functions first
+@import "bootstrap/scss/functions";
+
+// Customize some defaults
+$primary: #6366f1;
+$secondary: #1E204C;
+$purple: #7952b3;
+$tertiary: $purple;
+$fuschia: #D148EF;
+$cta: $fuschia;
+$light: #D4D7E5;
+$dark: #131022;
+$success: #198754;
+$info: #0dcaf0;
+$warning: #ffc107;
+$danger: #dc3545;
+$body-color: #333;
+$body-bg: #fff;
+$border-radius: .4rem;
+
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark
+);
+
+// Required
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+
+@import "bootstrap/scss/type";
+// @import "bootstrap/scss/images";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/tables";
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/transitions";
+@import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/button-group";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar"; // Requires nav
+@import "bootstrap/scss/card";
+@import "bootstrap/scss/breadcrumb";
+// @import "bootstrap/scss/accordion";
+// @import "bootstrap/scss/pagination";
+// @import "bootstrap/scss/badge";
+// @import "bootstrap/scss/alert";
+// @import "bootstrap/scss/progress";
+// @import "bootstrap/scss/list-group";
+@import "bootstrap/scss/close";
+// @import "bootstrap/scss/toasts";
+@import "bootstrap/scss/modal"; // Requires transitions
+// @import "bootstrap/scss/tooltip";
+@import "bootstrap/scss/popover";
+// @import "bootstrap/scss/carousel";
+// @import "bootstrap/scss/spinners";
+@import "bootstrap/scss/offcanvas"; // Requires transitions
+// @import "bootstrap/scss/placeholders";
+
+// Helpers
+// @import "bootstrap/scss/helpers";
+
+// Utilities
+@import "bootstrap/scss/utilities/api";
+
+@each $color, $value in $theme-colors {
+  .swatch-#{$color} {
+    color: color-contrast($value);
+  }
+}
+.site-logo svg {
+  min-width: 380px;
+  height: auto;
+}
+
+.site-logo svg,
+.site-logo svg path,
+.site-logo svg polygon,
+.site-logo svg polyline,
+.site-logo svg rect {
+  fill: $dark;
+  color: $dark;
+}
+
+a.logo-img.text-dark svg,
+a.logo-img svg path,
+a.logo-img svg polygon,
+a.logo-img svg polyline,
+a.logo-img svg rect {
+  fill: $primary;
+  color: $primary;
+}
+
+[data-bs-theme="dark"] {
+
+  body {
+    --bs-body-color: var(--bs-white);
+    --bs-body-color-rgb: #{to-rgb($white)};
+    --bs-body-bg: var($dark);
+    background-color: $dark;
+    --bs-body-bg-rgb: #{to-rgb($dark)};
+    --bs-tertiary-bg: #{tertiary};
+  }
+
+  .offcanvas {
+    background-color: $dark;
+  }
+  .site-logo svg,
+  .site-logo svg path,
+  .site-logo svg polygon,
+  .site-logo svg polyline,
+  .site-logo svg rect {
+    fill: $white;
+    color: $white;
+  }
+
+  a.logo-img.text-dark svg,
+  a.logo-img svg path,
+  a.logo-img svg polygon,
+  a.logo-img svg polyline,
+  a.logo-img svg rect {
+    fill: $light;
+    color: $light;
+  }
+}
+
+
+// Tint a color: mix a color with white
+@function tint-color($color, $weight) {
+  @return mix(white, $color, $weight);
+}
+
+// Shade a color: mix a color with black
+@function shade-color($color, $weight) {
+  @return mix(black, $color, $weight);
+}
+
+// Shade the color if the weight is positive, else tint it
+@function shift-color($color, $weight) {
+  @return if($weight > 0, shade-color($color, $weight), tint-color($color, -$weight));
+}
+
+
+//
+// Custom styles
+//
+.btn-primary {
+  color: $white!important;
+  font-weight: bold;
+}
+
+.bg-gradient-primary {
+  background: rgb(0, 0, 0);
+  background: -moz-linear-gradient(180deg, $primary, $secondary 100%);
+  background: -webkit-linear-gradient(180deg, $primary, $secondary 100%);
+  background: linear-gradient(180deg, $primary, $secondary 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="$primary", endColorstr="$secondary", GradientType=1);
+}
+
+.bg-gradient-cta {
+  background: rgb(0, 0, 0);
+  background: -moz-linear-gradient(90deg, $primary, $fuschia 100%);
+  background: -webkit-linear-gradient(90deg, $primary, $fuschia 100%);
+  background: linear-gradient(90deg, $primary, $fuschia 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="$primary", endColorstr="$fuschia", GradientType=1);
+}
+
+.bg-gradient-primary-horizontal {
+  background: rgb(0, 0, 0);
+  background: -moz-linear-gradient(90deg, $primary, $secondary 100%);
+  background: -webkit-linear-gradient(90deg, $primary, $secondary 100%);
+  background: linear-gradient(90deg, $primary, $secondary 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="$primary", endColorstr="$secondary", GradientType=1);
+}
+
+.bg-gradient-dark {
+  background: rgb(0, 0, 0);
+  background: -moz-linear-gradient(180deg, $dark, $secondary 100%);
+  background: -webkit-linear-gradient(180deg, $dark, $secondary 100%);
+  background: linear-gradient(180deg, $dark, $secondary 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="$dark", endColorstr="$secondary", GradientType=1);
+}
+
+.bg-tertiary {
+  background-color: $tertiary;
+}
+
+.bg-cta {
+  background-color: $cta;
+}
+
+
+@import "icon-list";
+
+body {
+  // padding: 1.5rem;
+}
+.site-navigation ul.menu {
+  margin-bottom: 4px;
+}
+[type=button],[type=submit],button { 
+  color: $primary;
+  border: 1px solid $primary;
+}
+[type=button]:focus, [type=button]:hover, [type=submit]:focus, [type=submit]:hover, button:focus, button:hover {
+  background-color: $primary;
+}
+
+
+
+//
+// It can also be used for one-off contrast needs:
+//
+.custom-element {
+  color: color-contrast(#000); // returns `color: #fff`
+}
+
+//
+// You can also specify a base color with our color map functions:
+//
+
+.custom-element {
+  color: color-contrast($dark); // returns `color: #fff`
+}
