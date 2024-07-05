@@ -1,6 +1,4 @@
-=== Hello Elementor Child ===
 
-Contributors: elemntor, KingYes, ariel.k, jzaltzberg, mati1000, bainternet
 Requires at least: 5.9
 Tested up to: 6.2
 Stable tag: 2.0.0
@@ -10,7 +8,7 @@ License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, featured-images, rtl-language-support, threaded-comments, translation-ready
 
-The Hello Elementor Child Theme is a starter blank child theme for [Hello Elementor](https://wordpress.org/themes/hello-elementor/) theme.
+The Hello DMS theme is a Elementor Child Theme and a starter blank child theme for [Hello Elementor](https://wordpress.org/themes/hello-elementor/) theme. DMS has integrated Bootstrap 5 and Dark Mode.
 
 == Description ==
 
