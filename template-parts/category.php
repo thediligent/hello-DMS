@@ -25,7 +25,7 @@ get_header();
 				while (have_posts()) {
 					the_post();
 					$post_link = get_permalink();
-					?>
+				?>
 					<article class="post p-4">
 						<?php
 						printf('<h2 class="%s h4 mb-3"><a class="text-decoration-none" href="%s">%s</a></h2>', 'entry-title', esc_url($post_link), wp_kses_post(get_the_title()));
@@ -43,17 +43,13 @@ get_header();
 
 			<?php
 			global $wp_query;
-			if ($wp_query->max_num_pages > 1):
-				?>
+			if ($wp_query->max_num_pages > 1) :
+			?>
 				<nav class="pagination">
 					<?php /* Translators: HTML arrow */ ?>
-					<div class="nav-previous">
-						<?php next_posts_link(sprintf(__('%s older', 'hello-elementor'), '<span class="meta-nav">&larr;</span>')); ?>
-					</div>
+					<div class="nav-previous"><?php next_posts_link(sprintf(__('%s older', 'hello-elementor'), '<span class="meta-nav">&larr;</span>')); ?></div>
 					<?php /* Translators: HTML arrow */ ?>
-					<div class="nav-next">
-						<?php previous_posts_link(sprintf(__('newer %s', 'hello-elementor'), '<span class="meta-nav">&rarr;</span>')); ?>
-					</div>
+					<div class="nav-next"><?php previous_posts_link(sprintf(__('newer %s', 'hello-elementor'), '<span class="meta-nav">&rarr;</span>')); ?></div>
 				</nav>
 			<?php endif; ?>
 		</div>

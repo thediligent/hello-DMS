@@ -113,7 +113,8 @@ $theme-colors: (
   }
 }
 .site-logo svg {
-  min-width: 380px;
+  width: 380px;
+  max-width: 100%;
   height: auto;
 }
 
@@ -251,6 +252,13 @@ body {
 }
 
 
+// header offcanvas size overide
+@media (max-width: 992px) {
+  .site-header.menu-dropdown-tablet:not(.menu-layout-dropdown) .site-navigation {
+      display: flex !important;
+  }
+}
+
 
 //
 // It can also be used for one-off contrast needs:
@@ -265,4 +273,101 @@ body {
 
 .custom-element {
   color: color-contrast($dark); // returns `color: #fff`
+}
+
+/* Mobile */
+@media (max-width: 991px) {
+  ul.sub-menu {
+    height: 0;
+    opacity: 0;
+    transition: all 300ms ease-out;
+  }
+  #menu-primary-menu li {
+    padding: 12px 30px;
+    min-height: 36px;
+    border-bottom: 1px solid #dedede;
+    overflow: hidden;
+  }
+  #menu-primary-menu li:hover {
+    background: rgba(155, 155, 155, 0.15);
+  }
+  #menu-primary-menu ul.sub-menu {
+    list-style-type: none;
+  }
+  #menu-primary-menu ul.sub-menu li {
+    list-style-type: none;
+    border-top: 1px solid #dedede;
+    border-bottom: none;
+    width: 100%;
+  }
+  #menu-primary-menu .menu-item-has-children {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+  }
+  #menu-primary-menu .menu-item-has-children > a {
+    display: inline-block;
+    width: 100%;
+    min-height: 32px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 8px;
+  }
+  #menu-primary-menu .menu-item-has-children > a::after {
+    content: "\e5c5";
+    font-family: "Material Symbols Outlined";
+    font-size: 1.8em;
+    padding-top: 4px;
+    float: right;
+    transition: all 300ms ease-out;
+  }
+  #menu-primary-menu .menu-item-has-children.open > a::after {
+    content: "\e5c7";
+    transition: all 300ms ease-out;
+  }
+  ul.sub-menu {
+    padding-left: 0px;
+  }
+  ul.sub-menu.show {
+    height: auto;
+    opacity: 1;
+  }
+  ul.sub-menu li a {
+    font-weight: normal;
+    text-decoration: none;
+    padding-left: 20px;
+    font-size: small;
+  }
+  button.navbar-toggler {
+    background-color: transparent !important;
+  }
+  #menu-primary-menu a {
+    text-decoration: none;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    color: #414042;
+  }
+}
+.offcanvas-body a {
+  width: 100%;
+  display: block;
+}
+.site-navigation ul.menu li ul li {
+  font-size: smaller;
+}
+.site-navigation ul.menu li ul {
+  min-width: 180px;
+}
+/* site footer nav styles */
+footer ul.menu {
+  padding-left: 0px;
+  margin-left: 0px;
+}
+footer ul.menu a {
+  font-size: small;
+  color: $light;
+  text-decoration: none;
+}
+footer ul.menu a:hover {
+  color: $primary;
 }

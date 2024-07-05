@@ -1,13 +1,17 @@
 <?php
 /**
- * The template for displaying singular post-types: posts, pages and user-defined custom post types.
- *
- * @package HelloElementor
- */
-
+* Template Name: Documenation Page
+*
+* @package Hello DMS
+* @subpackage hello_DMS
+* @since hello_DMS 1.0
+*/
+?>
+<?php
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
+get_header();
 
 while ( have_posts() ) :
 	the_post();
@@ -39,3 +43,5 @@ while ( have_posts() ) :
 
 	<?php
 endwhile;
+get_footer();
+?>
