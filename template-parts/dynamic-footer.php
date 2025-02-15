@@ -25,7 +25,7 @@ $footer_nav_menu = wp_nav_menu( [
 		<div class="site-branding show-<?php echo esc_attr( hello_elementor_get_setting( 'hello_footer_logo_type' ) ); ?>">
 			<?php if ( has_custom_logo() && ( 'title' !== hello_elementor_get_setting( 'hello_footer_logo_type' ) || $is_editor ) ) : ?>
 				<div class="site-logo <?php echo esc_attr( hello_show_or_hide( 'hello_footer_logo_display' ) ); ?>">
-					<?php the_custom_logo(); ?>
+				<?php display_selected_logo(); ?>
 				</div>
 			<?php endif;
 

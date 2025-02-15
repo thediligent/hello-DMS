@@ -1,9 +1,10 @@
+
 // // Import only the Bootstrap components we need
 // import { Popover } from 'bootstrap';
 
-import { Offcanvas } from 'bootstrap';
-const offcanvasElementList = document.querySelectorAll('.offcanvas')
-const offcanvasList = [...offcanvasElementList].map(offcanvasEl => new bootstrap.Offcanvas(offcanvasEl))
+// import { Offcanvas } from 'bootstrap';
+// const offcanvasElementList = document.querySelectorAll('.offcanvas')
+// const offcanvasList = [...offcanvasElementList].map(offcanvasEl => new bootstrap.Offcanvas(offcanvasEl))
 
 // // Create an example popover
 // document.querySelectorAll('[data-bs-toggle="popover"]')
@@ -11,34 +12,42 @@ const offcanvasList = [...offcanvasElementList].map(offcanvasEl => new bootstrap
 //     new Popover(popover)
 //   })
 
-  function initializeThemeToggle() {
-    // Check if the checkbox exists
-    const checkbox = document.getElementById('toggleTheme');
-    
-    if (checkbox) {
-      // Function to handle theme toggle
+function initializeThemeToggle() {
+  const checkbox = document.getElementById('toggleTheme');
+  
+  if (checkbox) {
       function toggleTheme() {
-        const htmlTag = document.documentElement;
-        
-        if (checkbox.checked) {
-          htmlTag.setAttribute('data-bs-theme', 'dark');
-          console.log('dark');
-        } else {
-          htmlTag.removeAttribute('data-bs-theme');
-          console.log('light');
-        }
+          const htmlTag = document.documentElement;
+          const theme = checkbox.checked ? 'dark' : 'light';
+          
+          if (theme === 'dark') {
+              htmlTag.setAttribute('data-bs-theme', 'dark');
+          } else {
+              htmlTag.removeAttribute('data-bs-theme');
+          }
+          
+          // Set cookie
+          document.cookie = `wp_theme_preference=${theme}; path=/; max-age=31536000`; // 1 year expiration
+          
+          console.log(theme);
       }
-  
-      // Add event listener to the checkbox
+
       checkbox.addEventListener('change', toggleTheme);
-  
-      // Initial call to set the correct theme based on checkbox state
+
+      // Check cookie on page load
+      const themeCookie = document.cookie.split('; ').find(row => row.startsWith('wp_theme_preference='));
+      if (themeCookie) {
+          const savedTheme = themeCookie.split('=')[1];
+          checkbox.checked = savedTheme === 'dark';
+      }
+
+      // Initial call to set the correct theme
       toggleTheme();
-    }
   }
-  
-  // Run the initialization function when the DOM is fully loaded
-  document.addEventListener('DOMContentLoaded', initializeThemeToggle);
+}
+
+// Call the function when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', initializeThemeToggle);
   
 
   function replaceSVGImagesWithInlineSVG() {
@@ -93,119 +102,8 @@ const offcanvasList = [...offcanvasElementList].map(offcanvasEl => new bootstrap
   });
   
 
-  
-  // Get all the card elements
-  const cards = document.querySelectorAll(".overlayCards .card");
-  
-  // Add event listeners to each card
-  cards.forEach((card) => {
-    // const cardTitle = card.querySelector('.card-title'); // Get the h4 element within the card
-  
-    card.addEventListener("mouseenter", () => {
-      // Remove the 'show' class from all cards
-      cards.forEach((c) => {
-        c.classList.remove("show");
-        // c.querySelector('.card-title').classList.remove('lp-underline'); // Remove 'lp-underline' class from all h4 elements
-      });
-  
-      // Add the 'show' class to the hovered card
-      card.classList.add("show");
-      // cardTitle.classList.add('lp-underline'); // Add 'lp-underline' class to the h4 element of the hovered card
-    });
-  
-    card.addEventListener("mouseleave", () => {
-      // Remove the 'show' class from the card
-      card.classList.remove("show");
-      // cardTitle.classList.remove('lp-underline'); // Remove 'lp-underline' class from the h4 element
-    });
-  });
 
-    // Sort Press Releases Ascending or Descending
-    if (document.getElementById("sort-btn") !== null) {
-      const sortBtn = document.getElementById("sort-btn");
-      const currentUrl = new URL(window.location.href);
-      let sortOrder = currentUrl.searchParams.get("order");
-  
-      if (sortOrder === "asc") {
-      } else {
-        sortOrder = "desc";
-      }
-  
-      sortBtn.addEventListener("click", () => {
-        const currentUrl = new URL(window.location.href);
-        const sortOrder = currentUrl.searchParams.get("order");
-        if (sortOrder === "asc") {
-          currentUrl.searchParams.set("order", "desc");
-        } else {
-          currentUrl.searchParams.set("order", "asc");
-        }
-        window.location.href = currentUrl.href;
-      });
-  
-      // Sets the Card holder to grid for lists
-      //
-      const gridBtn = document.getElementById("grid-btn");
-      const listBtn = document.getElementById("list-btn");
-  
-      let cardStyle = currentUrl.searchParams.get("style");
-      if (cardStyle === "grid") {
-      } else {
-        cardStyle = "list";
-      }
-  
-      gridBtn.addEventListener("click", () => {
-        const currentUrl = new URL(window.location.href);
-        currentUrl.searchParams.set("style", "grid");
-        window.location.href = currentUrl.href;
-        var cardHolders = document.querySelectorAll(".card-holder");
-        cardHolders.forEach(function (cardHolder) {
-          cardHolder.classList.remove("card-list");
-          cardHolder.classList.add("col-md-6");
-          cardHolder.classList.add("col-lg-4");
-          cardHolder.classList.add("card-grid");
-        });
-        var swapCardImages = document.querySelectorAll(".swap-card-image");
-        swapCardImages.forEach(function (swapCardImage) {
-          swapCardImage.classList.remove("col-md-4");
-        });
-        var swapCardBodies = document.querySelectorAll(".swap-card-body");
-        swapCardBodies.forEach(function (swapCardBody) {
-          swapCardBody.classList.remove("col-md-8");
-        });
-      });
-      // Sets the Card holder to lists for grids
-      listBtn.addEventListener("click", () => {
-        const currentUrl = new URL(window.location.href);
-        currentUrl.searchParams.set("style", "list");
-        window.location.href = currentUrl.href;
-        var cardHolders = document.querySelectorAll(".card-holder");
-        cardHolders.forEach(function (cardHolder) {
-          cardHolder.classList.remove("col-md-6");
-          cardHolder.classList.remove("col-lg-4");
-          cardHolder.classList.remove("card-grid");
-          cardHolder.classList.add("card-list");
-        });
-        var swapCardImages = document.querySelectorAll(".swap-card-image");
-        swapCardImages.forEach(function (swapCardImage) {
-          swapCardImage.classList.add("col-md-4");
-        });
-        var swapCardBodies = document.querySelectorAll(".swap-card-body");
-        swapCardBodies.forEach(function (swapCardBody) {
-          swapCardBody.classList.add("col-md-8");
-        });
-      });
-    }
-  
-    // // Sticky Navbar
-    // const navBar = document.getElementById("site-header");
-    // const offset = 90;
-    // window.addEventListener("scroll", () => {
-    //   if (window.scrollY <= offset) {
-    //     navBar.classList.remove("sticky-top");
-    //   } else {
-    //     navBar.classList.add("sticky-top");
-    //   }
-    // });
+
     // search bar empty or not a good search
     const searchForms = document.querySelectorAll(".search-form");
   
@@ -439,3 +337,40 @@ const offcanvasList = [...offcanvasElementList].map(offcanvasEl => new bootstrap
     });
   });
   
+  document.addEventListener('DOMContentLoaded', function() {
+    const header = document.querySelector('.site-header.position-fixed');
+    const scrollThreshold = 50; // Adjust this value as needed
+
+    function toggleScrolledClass() {
+        if (window.scrollY > scrollThreshold) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    }
+
+    // Initial check on page load
+    toggleScrolledClass();
+
+    // Add event listener for scroll
+    window.addEventListener('scroll', toggleScrolledClass);
+});
+document.addEventListener('DOMContentLoaded', function() {
+  const dropdowns = document.querySelectorAll('.dropdown-toggle');
+  dropdowns.forEach(dropdown => {
+      dropdown.addEventListener('click', function(e) {
+          e.preventDefault();
+          this.parentNode.classList.toggle('active');
+      });
+  });
+});
+document.addEventListener('DOMContentLoaded', function() {
+  const toggleButton = document.getElementById('lg-toggleSidebar');
+  const sidebar = document.querySelector('.sidebar.d-none.d-lg-block');
+
+  if (toggleButton && sidebar) {
+      toggleButton.addEventListener('click', function() {
+          sidebar.classList.toggle('show');
+      });
+  }
+});

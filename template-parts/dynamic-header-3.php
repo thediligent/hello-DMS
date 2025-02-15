@@ -21,9 +21,9 @@ $menu_args = [
 $header_nav_menu = wp_nav_menu($menu_args);
 $header_mobile_nav_menu = wp_nav_menu($menu_args); // The same menu but separate call to avoid duplicate ID attributes.
 ?>
-<header id="site-header" class="site-header dynamic-header <?php echo esc_attr($header_class); ?>">
-	<div class="container-fluid container-xxl d-flex w-100 align-items-center justify-content-end">
-		<div class="col-8 col-md-5 col-lg-4">
+<header id="site-header3" class="w-100 site-header dynamic-header position-absolute bg-transparent <?php echo esc_attr($header_class); ?>">
+	<div class="container-fluid container-xxl d-flex align-items-center justify-content-end">
+		<div class="d-flex">
 			<div
 				class="site-branding show-<?php echo esc_attr(hello_elementor_get_setting('hello_header_logo_type')); ?>">
 				<div class="site-logo <?php echo esc_attr(hello_show_or_hide('hello_header_logo_display')); ?>">
@@ -45,7 +45,7 @@ $header_mobile_nav_menu = wp_nav_menu($menu_args); // The same menu but separate
 		<div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar2"
 			aria-labelledby="offcanvasNavbar2Label">
 			<div class="offcanvas-header">
-				<h5 class="offcanvas-title" id="offcanvasNavbar2Label">Offcanvas</h5>
+				<h5 class="offcanvas-title" id="offcanvasNavbar2Label">Menu</h5>
 				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
 					aria-label="Close"></button>
 			</div>
@@ -58,23 +58,22 @@ $header_mobile_nav_menu = wp_nav_menu($menu_args); // The same menu but separate
 						?>
 					</nav>
 				<?php endif; ?>
-				<!-- <form class="d-flex mt-3 mt-lg-0" role="search">
-			<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" jf-ext-cache-id="2">
-			<button class="btn btn-outline-success" type="submit" jf-ext-button-ct="search">Search</button>
-		  </form> -->
+				<form class="d-flex mt-3 mt-lg-0" role="search">
+					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+						jf-ext-cache-id="2">
+					<button class="btn btn-outline-success" type="submit" jf-ext-button-ct="search">Search</button>
+				</form>
 			</div>
 		</div>
-		<div class="d-flex ms-auto ms-lg-2 form-check form-switch">
+		<div class="ms-auto ms-lg-2 form-check form-switch">
 			<input class="form-check-input" type="checkbox" role="switch" id="toggleTheme">
 			<label class="form-check-label" for="toggleTheme"></label>
 		</div>
-		<a href="#" class="d-flex d-lg-none navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2"
-			aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
-			<p class="d-inline lh-1 p-0 m-0">
-				<span class="material-symbols-outlined">
-					menu
-				</span>
-			</p>
+		<a href="#" class="d-xl-none navbar-toggler" data-bs-toggle="offcanvas"
+			data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+			<span class="material-symbols-outlined text-light">
+				menu
+			</span>
 		</a>
 		<?php if ($header_mobile_nav_menu): ?>
 			<div

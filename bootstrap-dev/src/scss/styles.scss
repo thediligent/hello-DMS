@@ -9,7 +9,6 @@
 // `$body-color` or write more CSS that override's Bootstrap's CSS like so:
 // `body { color: red; }`.
 
-
 //
 // Bring in Bootstrap
 //
@@ -28,28 +27,39 @@
 $enable-gradients: false;
 $enable-shadows: false;
 
-$offcanvas-box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+$offcanvas-box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
 
 // Include functions first
 @import "bootstrap/scss/functions";
 
 // Customize some defaults
 $primary: #6366f1;
-$secondary: #1E204C;
+$secondary: #1e204c;
 $purple: #7952b3;
 $tertiary: $purple;
-$fuschia: #D148EF;
+$fuschia: #d148ef;
 $cta: $fuschia;
-$light: #D4D7E5;
+$light: #d4d7e5;
 $dark: #131022;
 $success: #198754;
 $info: #0dcaf0;
 $warning: #ffc107;
 $danger: #dc3545;
 $body-color: #333;
-$body-bg: #fff;
-$border-radius: .4rem;
-
+$body-bg: #ffffffab;
+$border-radius: 0.4rem;
+$white: #fff;
+$white-80: #ffffffaa;
+$white-60: #ffffff88;
+$white-40: #ffffff44;
+$white-20: #ffffff22;
+$white-0: #ffffff00;
+$black: #000;
+$black-80: #000000aa;
+$black-60: #00000088;
+$black-40: #00000044;
+$black-20: #00000022;
+$black-0: #00000000;
 
 $theme-colors: (
   "primary": $primary,
@@ -59,8 +69,9 @@ $theme-colors: (
   "warning": $warning,
   "danger": $danger,
   "light": $light,
-  "dark": $dark
+  "dark": $dark,
 );
+$headings-font-family: "Manrope", sans-serif;
 
 // Required
 @import "bootstrap/scss/variables";
@@ -87,7 +98,7 @@ $theme-colors: (
 @import "bootstrap/scss/breadcrumb";
 // @import "bootstrap/scss/accordion";
 // @import "bootstrap/scss/pagination";
-// @import "bootstrap/scss/badge";
+@import "bootstrap/scss/badge";
 // @import "bootstrap/scss/alert";
 // @import "bootstrap/scss/progress";
 // @import "bootstrap/scss/list-group";
@@ -102,7 +113,7 @@ $theme-colors: (
 // @import "bootstrap/scss/placeholders";
 
 // Helpers
-// @import "bootstrap/scss/helpers";
+@import "bootstrap/scss/helpers";
 
 // Utilities
 @import "bootstrap/scss/utilities/api";
@@ -112,32 +123,178 @@ $theme-colors: (
     color: color-contrast($value);
   }
 }
+body,
+p {
+  font-family: "Roboto", sans-serif;
+  line-height: 2em;
+}
+.card {
+  background-color: #f3f6ff10;
+}
 .site-logo svg {
-  width: 380px;
+  width: 296px;
   max-width: 100%;
   height: auto;
 }
+.site-logo .logo-logo2 svg {
+  max-width: 160px;
+}
+.site-logo .logo-logo3 svg {
+  max-width: 48px;
+}
+.lh-1,
+.lh-1 p {
+  line-height: 1em !important;
+}
+.lh-2,
+.lh-2 p {
+  line-height: 2em !important;
+}
+.lh-3,
+.lh-3 p {
+  line-height: 3em !important;
+}
+.lh-4,
+.lh-4 p {
+  line-height: 4em !important;
+}
 
-.site-logo svg,
-.site-logo svg path,
-.site-logo svg polygon,
-.site-logo svg polyline,
-.site-logo svg rect {
-  fill: $dark;
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Manrope", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: inherit;
+}
+.manrope-200 {
+  font-family: "Manrope", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 200 !important;
+}
+.manrope-300 {
+  font-family: "Manrope", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 300 !important;
+}
+.manrope-400 {
+  font-family: "Manrope", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 400 !important;
+}
+.manrope-500 {
+  font-family: "Manrope", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 500 !important;
+}
+.manrope-600 {
+  font-family: "Manrope", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 600 !important;
+}
+.manrope-700 {
+  font-family: "Manrope", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 700 !important;
+}
+.manrope-800 {
+  font-family: "Manrope", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 800 !important;
+}
+.manrope-900 {
+  font-family: "Manrope", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 900 !important;
+}
+.elementor-heading-title {
+  line-height: 1.2486 !important;
+}
+
+.site-header.sticky .site-logo,
+.bg-transparent .site-logo,
+.bg-dark .site-logo,
+.sidebar .site-logo {
+  .logo-logo1,
+  .logo-logo2 {
+    svg {
+      &,
+      path,
+      polygon,
+      polyline,
+      rect {
+        fill: $white;
+        color: $white;
+      }
+    }
+  }
+}
+[data-bs-theme="dark"]
+  .site-header.sticky.scrolled
+  .site-navigation
+  ul.menu
+  li
+  a,
+.site-header.sticky .site-navigation ul.menu li a {
+  color: $white;
+}
+[data-bs-theme="dark"]
+  .site-header.sticky.scrolled
+  .site-navigation
+  ul.menu
+  ul.sub-menu
+  li
+  a,
+.site-header .site-navigation ul.menu ul.sub-menu li a,
+.site-header.sticky.scrolled .site-navigation ul.menu li a {
   color: $dark;
 }
 
-a.logo-img.text-dark svg,
-a.logo-img svg path,
-a.logo-img svg polygon,
-a.logo-img svg polyline,
-a.logo-img svg rect {
-  fill: $primary;
-  color: $primary;
+.site-header.sticky.scrolled .site-logo,
+.site-logo {
+  .logo-logo1,
+  .logo-logo2 {
+    svg {
+      &,
+      path,
+      polygon,
+      polyline,
+      rect {
+        fill: $dark;
+        color: $dark;
+      }
+    }
+  }
+}
+
+a.logo-img {
+  &.text-dark,
+  & {
+    .logo-logo1,
+    .logo-logo2 {
+      svg {
+        &,
+        path,
+        polygon,
+        polyline,
+        rect {
+          fill: $primary;
+          color: $primary;
+        }
+      }
+    }
+  }
 }
 
 [data-bs-theme="dark"] {
-
   body {
     --bs-body-color: var(--bs-white);
     --bs-body-color-rgb: #{to-rgb($white)};
@@ -150,25 +307,58 @@ a.logo-img svg rect {
   .offcanvas {
     background-color: $dark;
   }
-  .site-logo svg,
-  .site-logo svg path,
-  .site-logo svg polygon,
-  .site-logo svg polyline,
-  .site-logo svg rect {
-    fill: $white;
-    color: $white;
+  .site-header.sticky.scrolled .site-logo,
+  .site-logo {
+    .logo-logo1,
+    .logo-logo2 {
+      svg {
+        &,
+        path,
+        polygon,
+        polyline,
+        rect {
+          fill: $white;
+          color: $white;
+        }
+      }
+    }
   }
 
-  a.logo-img.text-dark svg,
-  a.logo-img svg path,
-  a.logo-img svg polygon,
-  a.logo-img svg polyline,
-  a.logo-img svg rect {
-    fill: $light;
-    color: $light;
+  a.logo-img {
+    &.text-dark,
+    & {
+      .logo-logo1,
+      .logo-logo2 {
+        svg {
+          &,
+          path,
+          polygon,
+          polyline,
+          rect {
+            fill: $light;
+            color: $light;
+          }
+        }
+      }
+    }
+  }
+  .site-navigation ul.menu li a {
+    color: $white;
   }
 }
 
+.site-header {
+  transition: all 100ms ease-in;
+}
+
+#site-header2 .site-logo svg {
+  max-width: 256px;
+}
+
+.bg-transparent .site-navigation ul.menu li a,
+.bg-dark .site-navigation ul.menu li a {
+  color: $white;
+}
 
 // Tint a color: mix a color with white
 @function tint-color($color, $weight) {
@@ -182,15 +372,18 @@ a.logo-img svg rect {
 
 // Shade the color if the weight is positive, else tint it
 @function shift-color($color, $weight) {
-  @return if($weight > 0, shade-color($color, $weight), tint-color($color, -$weight));
+  @return if(
+    $weight > 0,
+    shade-color($color, $weight),
+    tint-color($color, -$weight)
+  );
 }
-
 
 //
 // Custom styles
 //
 .btn-primary {
-  color: $white!important;
+  color: $white !important;
   font-weight: bold;
 }
 
@@ -234,31 +427,33 @@ a.logo-img svg rect {
   background-color: $cta;
 }
 
-
 @import "icon-list";
 
-body {
-  // padding: 1.5rem;
-}
 .site-navigation ul.menu {
   margin-bottom: 4px;
 }
-[type=button],[type=submit],button { 
+[type="button"],
+[type="submit"],
+button {
   color: $primary;
   border: 1px solid $primary;
 }
-[type=button]:focus, [type=button]:hover, [type=submit]:focus, [type=submit]:hover, button:focus, button:hover {
+[type="button"]:focus,
+[type="button"]:hover,
+[type="submit"]:focus,
+[type="submit"]:hover,
+button:focus,
+button:hover {
   background-color: $primary;
 }
 
-
 // header offcanvas size overide
 @media (max-width: 992px) {
-  .site-header.menu-dropdown-tablet:not(.menu-layout-dropdown) .site-navigation {
-      display: flex !important;
+  .site-header.menu-dropdown-tablet:not(.menu-layout-dropdown)
+    .site-navigation {
+    display: flex !important;
   }
 }
-
 
 //
 // It can also be used for one-off contrast needs:
@@ -278,8 +473,8 @@ body {
 /* Mobile */
 @media (max-width: 991px) {
   ul.sub-menu {
-    height: 0;
-    opacity: 0;
+    // height: 0;
+    // opacity: 0;
     transition: all 300ms ease-out;
   }
   #menu-primary-menu li {
@@ -325,6 +520,12 @@ body {
     content: "\e5c7";
     transition: all 300ms ease-out;
   }
+  #offcanvasNavbar2 #menu-primary-menu li {
+    width: 100%;
+  }
+  #menu-primary-menu li {
+    border-bottom: 0px;
+  }
   ul.sub-menu {
     padding-left: 0px;
   }
@@ -348,6 +549,23 @@ body {
     color: #414042;
   }
 }
+.site-header.sticky .menu-item-has-children,
+.bg-transparent .menu-item-has-children,
+.bg-dark .menu-item-has-children {
+  color: #ffffffaa;
+}
+.site-header.sticky {
+  background-color: #ffffff00;
+}
+.site-header.sticky.scrolled {
+  background-color: #fff !important;
+}
+.site-header.sticky.scrolled .menu-item-has-children {
+  color: $body-color;
+}
+[data-bs-theme="dark"] .site-header.sticky.scrolled {
+  background-color: #131022 !important;
+}
 .offcanvas-body a {
   width: 100%;
   display: block;
@@ -358,6 +576,58 @@ body {
 .site-navigation ul.menu li ul {
   min-width: 180px;
 }
+.site-navigation ul.menu li a {
+  display: block;
+  padding: 8px 15px;
+  color: $black-80;
+  font-family: "Manrope";
+  text-decoration: none;
+  font-weight: 600;
+}
+.sidebar-link,
+a.sidebar-link {
+  cursor: pointer;
+  display: block;
+  font-weight: 400;
+  padding: 0.625rem 1.625rem;
+  position: relative;
+  text-decoration: none;
+  transition: color 75ms ease-in-out;
+}
+.sidebar {
+  background: #131022;
+  color: $light;
+  direction: ltr;
+  max-width: 296px;
+  min-width: 296px;
+  transition: margin-left 0.35s ease-in-out, left 0.35s ease-in-out,
+    margin-right 0.35s ease-in-out, right 0.35s ease-in-out;
+}
+.sidebar [data-bs-toggle="collapse"] {
+  position: relative;
+}
+.sidebar-content[data-simplebar] {
+  height: 100vh;
+  left: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+#content[data-simplebar] {
+  height: 100vh;
+  padding-top: 84px;
+  left: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+.simplebar-track.simplebar-horizontal {
+  display: none;
+}
+.simplebar-content {
+  overflow-x: hidden;
+}
+
 /* site footer nav styles */
 footer ul.menu {
   padding-left: 0px;
@@ -370,4 +640,82 @@ footer ul.menu a {
 }
 footer ul.menu a:hover {
   color: $primary;
+}
+
+.sidebar-nav {
+  margin: auto;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-menu li {
+  padding: 10px 8px;
+}
+
+.sidebar-menu a {
+  color: $white-60;
+  text-decoration: none;
+}
+
+.menu-separator {
+  font-weight: bold;
+  color: $light;
+}
+
+.dropdown-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sub-menu {
+  display: none;
+  list-style: none;
+  padding-left: 15px;
+}
+
+.menu-dropdown.active .sub-menu {
+  display: block;
+}
+.elementor-editor-active .sidebar.d-none {
+  display: none !important;
+}
+
+.sidebar.d-none.d-lg-block {
+  left: -290px;
+  margin-left: -290px;
+  position: relative;
+  transition: all 0.3s ease-in;
+}
+
+.sidebar.d-none.d-lg-block.show {
+  position: relative;
+  left: 0px;
+  margin-left: 0px;
+}
+.search input {
+  border: 0px;
+  background: rgba(255, 255, 255, 0.05);
+  height: 36px;
+}
+#offcanvasNavbar2 ul,
+#offcanvasNavbar2 ul li {
+  width: 100%;
+  position: relative;
+  display:block;
+}
+#offcanvasNavbar2 .site-navigation ul.menu li ul {
+  background-color: transparent;
+}
+#offcanvasNavbar2 .site-navigation ul a {
+  color: $white;
+}
+#offcanvasNavbar2 .site-navigation ul.menu li.menu-item-has-children:after {
+  display: none;
+}
+#offcanvasNavbar2  #menu-primary-menu ul.sub-menu li {
+  border-top: 0px!important;
 }
